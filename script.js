@@ -8,8 +8,8 @@ var TEXT_COLOR = "purple";
 // Stores the hero sprite position.
 var hero = {
   speed: 50, // Movement speed in pixels per second.
-  x: 0,
-  y: 0
+  x: 20,
+  y: 20
 };
 
 // Stores the finish line sprite position.
@@ -35,36 +35,33 @@ function reset() {
   hero.y = height / 2;
 
   // TODO: Position the finish line somewhere random.
-  finish.x = 0;
-  finish.y = 0;
+  finish.x = 20;
+  finish.y = 20;
 };
-
-
-
-
 // Modifies sprite positions and check if hero has crossed the finish.
 function update(canvas, duration) {
   if (38 in keysPressed) { // UP ARROW
     hero.y -= hero.speed * duration;
   }
   if (40 in keysPressed) { // DOWN ARROW
-    // TODO: Handle down arrow
+   hero.y +=hero.speed * duration; // TODO: Handle down arrow
   }
   if (37 in keysPressed) { // LEFT ARROW
-    // TODO: Handle left arrow
+   hero.x -=hero.speed * duration; // TODO: Handle left arrow
   }
   if (39 in keysPressed) { // RIGHT ARROW
-    // TODO: Handle right arrow
+   hero.x +=hero.speed * duration; // TODO: Handle right arrow
   }
 
   // TODO: Is megaman at the finish line? (modify 'false' -- DUH)
   // THINK: is the hero's (x, y) within the finish line's
   // (x, y, x + width, y + height)?
-  if (false) {
+  if (hero.x > finish.x & hero.x < finish.x.width & hero.y > finish.y & hero.y <finish.y.width ) {
     wins++;
     canvas.fillText("YOU WON!", 50, 100);
     reset();
   }
+  if (hero){}
 };
 
 // Stores which keys are currently pressed.
@@ -80,11 +77,11 @@ function render(canvas) {
   }
 
   if (heroImage != null) {
-    // TODO: Draw the heroImage at hero.x, hero.y.
+    canvas.drawImage(heroImage,hero.x,hero.y);
   }
 
   if (finishImage != null) {
-    // TODO: Draw the finishImage at finish.x, finish.y.
+   canvas.drawImage(finishImage,finish.x,finish.y);
   }
 
   // TODO: Try a different text color or font.
